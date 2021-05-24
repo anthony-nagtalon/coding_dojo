@@ -1,8 +1,9 @@
 class Product:
-    def __init__(self, name, price, category):
+    def __init__(self, name, price, category, unique_id):
         self.name = name
         self.price = price
         self.category = category
+        self.unique_id = unique_id
 
     def update_price(self, percent_change, is_increased):
         if is_increased:
