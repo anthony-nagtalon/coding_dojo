@@ -37,3 +37,35 @@ user3.make_deposit(3000).make_withdrawal(250).make_withdrawal(200).make_withdraw
 # Tranfer money from the first user to third user
 user1.transfer_money(user3, 100).display_user_balance()
 user3.display_user_balance()
+
+class BankAccount:
+    def __init__(self, int_rate = 0.01, balance = 0): 
+        self.int_rate = int_rate
+        self.balance = balance
+    
+    def deposit(self, amount):
+        self.balance += amount
+        return self
+
+    def withdraw(self, amount):
+        if self.balance < amount:
+            print("Insufficient funds: Charging a $5 fee")
+            self.balance -= 5
+            # Note: Balance can go under 0 if charged with less than $5 in account
+        else:
+            self.balance -= amount
+        return self
+
+    def display_account_info(self):
+        print("Balance: ${}".format(self.balance))
+
+    def yield_interest(self):
+        if self.balance > 0:
+            self.balance *= (self.int_rate + 1)
+        return self
+
+acct1 = BankAccount()
+acct2 = BankAccount()
+
+acct1.deposit(500).deposit(50).deposit(5).withdraw(412).yield_interest().display_account_info()
+acct2.deposit(1000).deposit(500).withdraw(25).withdraw(75).withdraw(550).withdraw(125).yield_interest().display_account_info()
