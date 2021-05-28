@@ -73,17 +73,26 @@ class SList:
                     prev_node = cur_node
                     cur_node = cur_node.next
                 if not removed:
-                    print('Invalid: "{}" is not in list.'.format(val))
+                    print('Invalid: "{}" is not in the list.'.format(val))
 
         return self
 
     def insert_at(self, val, n):
-        if n == 0:
+        if n == 0 or self.head == None:
             self.add_to_front(val)
         else:
-            
+            prev_node = self.head
+            for i in range(n - 1):
+                prev_node = prev_node.next
+                if prev_node == None:
+                    print("Invalid: n = {} is out of list bounds.".format(n))
+                    return self
+            new_node = SLNode(val)
+            new_node.next = prev_node.next
+            prev_node.next = new_node
+        return self
 
 
 my_list = SList()
 my_list.add_to_front(2).add_to_front(1).add_to_back(3).add_to_back(4)
-my_list.remove_val(5).print_values()
+my_list.insert_at(5, 2).print_values()
