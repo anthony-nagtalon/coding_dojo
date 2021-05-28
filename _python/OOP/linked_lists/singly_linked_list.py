@@ -67,17 +67,23 @@ class SList:
             else:
                 removed = False
                 while cur_node != None:
+                    if cur_node != None and cur_node.value == val:
+                        prev_node.next = cur_node.next
+                        removed = True
                     prev_node = cur_node
                     cur_node = cur_node.next
-                    if cur_node != None and cur_node.value == val:
-                        prev_node.next == cur_node.next
-                        remove_success = True
-                if not remove_success:
+                if not removed:
                     print('Invalid: "{}" is not in list.'.format(val))
 
         return self
 
+    def insert_at(self, val, n):
+        if n == 0:
+            self.add_to_front(val)
+        else:
+            
+
 
 my_list = SList()
 my_list.add_to_front(2).add_to_front(1).add_to_back(3).add_to_back(4)
-my_list.remove_val(4).print_values()
+my_list.remove_val(5).print_values()
