@@ -60,6 +60,32 @@ class DoublyLinkedList:
 
         return self
 
+    # i = The number instance of the given to insert after
+    # IE. Inserting after the second instance of 2 in the list
+    def insert_after(self, val, given, i = 0):
+        if self.head == None:
+            print("Invalid: List is empty.")
+        else:    
+            cur_node = self.head
+            new_node = Node(val)
+            while True:
+                # Compare val
+                if cur_node.value == given:
+                    if i > 0:
+                        i -= 1
+                    else:
+                        new_node.next = cur_node.next
+                        new_node.prev = cur_node
+                        cur_node.next = new_node
+                        if new_node.next != None:
+                            new_node.next.prev = new_node
+                        return self
+                cur_node = cur_node.next
+                if cur_node == None or cur_node == self.head:
+                    break
+            print("Invalid: {} is not in list or not enough duplicates exist in list.".format(given))
+        return self
+
     def print_values(self):
         cur_node = self.head
         while True:
@@ -81,4 +107,5 @@ class DoublyLinkedList:
 list = DoublyLinkedList()
 list.add_to_front(3).add_to_front(2).add_to_front(1)
 list.add_to_front(0).add_to_back(4).add_to_back(5)
-list.insert_at(4.5, 5).print_values()
+list.insert_at(4.5, 5)
+list.insert_after(4.6, 4.5).add_to_back(5).insert_after(6, 5, 1).insert_after(1, 5, 2).print_values()
