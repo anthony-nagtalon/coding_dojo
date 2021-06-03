@@ -1,0 +1,23 @@
+.frame {
+    border-style: solid;
+    border: 2px;
+    border-color: black;
+}
+
+.row {
+    display: flex;
+    height: 50px;
+}
+
+.row div {
+    width: 50px;
+    height: 50px;
+}
+
+.space-black {
+    background-color:black;
+}
+
+.space-red {
+    background-color: red;
+}
