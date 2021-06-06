@@ -19,7 +19,7 @@ def create_user():
 def show_user():
     print("Showing the User Info From the Form")
     print(request.form)
-    return render_template("show.html", name_on_template=session['username'], email_on_template=session['useremail'])
+    return render_template("show.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
