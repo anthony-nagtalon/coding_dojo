@@ -1,0 +1,46 @@
+.result {
+    height: 40vh;
+    width: 30vw;
+    vertical-align: middle;
+}
+
+.result p {
+    color: white;
+}
+
+.result-correct {
+    background-color: green;
+}
+
+.result-incorrect {
+    background-color: red;
+}
+
+.block {
+    display: block;
+}
+
+.hori-center {
+    display: flex;
+    justify-content: center;
+}
+
+.vert-center {
+    display: flex;
+    align-items: center;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-multi {
+    display: block;
+    margin: auto
+}
+
+.guess-form {
+    position: relative;
+}
