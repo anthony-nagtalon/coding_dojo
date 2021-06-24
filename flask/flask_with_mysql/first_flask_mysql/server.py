@@ -1,8 +1,12 @@
+import re
 from flask import Flask, render_template, request, redirect, session, flash
+from flask_bcrypt import Bcrypt
 from mysqlconnection import connectToMySQL
 
 app = Flask(__name__)
 app.secret_key = "a_secret_key"
+bcrypt = Bcrypt(app)
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 @app.route("/")
 def index():
@@ -30,6 +34,9 @@ def add_friend_to_db():
 
 @app.route("/process", methods=['POST'])
 def process():
+    if not EMAIL_REGEX.match(request.form['email']):
+        flash("Invalid email address!", 'email')
+
     if len(request.form['fname']) < 1:
     	flash("Please enter a first name")
     if len(request.form['lname']) < 1:
