@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Dojo Survey Index</title>
+</head>
+<body>
+    <div class="container border p-4 m-4">
+        <form action="/result" method="post">
+            {% csrf_token %}
+            <!-- Name -->
+            <div class="row mb-2">
+                <label class="col col-form-label-sm" for="name">Your Name:</label>
+                <div class="col">
+                    <input class="form-control form-control-sm" type="text" name="name" id="name">
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="row mb-2">
+                <label class="col col-form-label-sm" for="location">Dojo Location:</label>
+                <div class="col">
+                    <select class="form-select form-select-sm" name="location" id="location">
+                        <option value="" selected disabled hidden>Select a location..</option>
+                        <option value="Online">Online</option>
+                        <option disabled>──────────</option>
+                        <option value="Bellevue, WA">Bellevue, WA</option>
+                        <option value="Boise, ID">Boise, ID</option>
+                        <option value="Chicago, IL">Chicago, IL</option>
+                        <option value="Dallas, TX">Dallas, TX</option>
+                        <option value="Los Angeles, CA">Los Angeles, CA</option>
+                        <option value="Silicon Valley, CA">Silicon Valley, CA</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Fav. Language -->
+            <div class="row mb-2">
+                <label class="col col-form-label-sm" for="favLang">Favorite Language:</label>
+                <div class="col">
+                    <select class="form-select form-select-sm" name="favLang" id="favLang">
+                        <option value="" selected disabled hidden>Select a language..</option>
+                        <option value="C#">C#</option>
+                        <option value="Java">Java</option>
+                        <option value="Javascript">Javascript</option>
+                        <option value="Python">Python</option>
+                        <option value="Ruby">Ruby</option>
+                        <option disabled>──────────</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <!-- Current Stack (Radio Buttons) -->
+                <div class="col border border-light">
+                    <label class="col-form-label-sm" for="curStack">Current Course's Stack:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="Python" name="curStack" id="curStack1">
+                        <label class="form-check-label" for="curStack1">
+                            Python
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="Java" name="curStack" id="curStack2">
+                        <label class="form-check-label" for="curStack2">
+                            Java
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="MERN" name="curStack" id="curStack3">
+                        <label class="form-check-label" for="curStack3">
+                            MERN
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="C# .Net" name="curStack" id="curStack4">
+                        <label class="form-check-label" for="curStack4">
+                            C# .Net
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Experience In (Checkboxes) -->
+                
+                <div class="col border border-light">
+                    <label class="col-form-label-sm" for="expIn">Experience In:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Basic Programming" name="expIn" id="expIn1">
+                        <label class="form-check-label" for="expIn1">
+                            Basic Programming
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Web Development" name="expIn" id="expIn2">
+                        <label class="form-check-label" for="expIn2">
+                            Web Development
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Databases" name="expIn" id="expIn3">
+                        <label class="form-check-label" for="expIn3">
+                            Databases
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comment -->
+            <div class="mb-3">
+                <label class="form-label col-form-label-sm" for="comment">Comment (optional):</label>
+                <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="row justify-content-end">
+                <button class="btn btn-sm btn-primary col-2" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
