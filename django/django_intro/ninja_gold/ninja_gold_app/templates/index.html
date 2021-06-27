@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Ninja Gold</title>
+</head>
+<body>
+    <div class="container py-5">
+        <!-- Gold Counter -->
+        <div class="d-flex flex-row my-4">
+            <h1 class="jumbotron-heading">Your Gold: {{ request.session.gold }}</h1>
+        </div>
+
+        <!-- Option Forms -->
+        <div class="row justify-content-between mb-3">
+            <form action="/process_money" method="POST" class="col p-4 mx-4 border border-dark d-flex flex-column text-center">
+                {% csrf_token %}
+                <input type="hidden" name="option" value="farm">
+                <h3>Farm</h3>
+                <p class="mb-4">(earns 10-20 golds)</p>
+                <button type="submit">Find Gold!</button>
+            </form>
+
+            <form action="/process_money" method="POST" class="col p-4 mx-4 border border-dark d-flex flex-column text-center">
+                {% csrf_token %}
+                <input type="hidden" name="option" value="cave">
+                <h3>Cave</h3>
+                <p class="mb-4">(earns 5-10 golds)</p>
+                <button type="submit">Find Gold!</button>
+            </form>
+
+            <form action="/process_money" method="POST" class="col p-4 mx-4 border border-dark d-flex flex-column text-center">
+                {% csrf_token %}
+                <input type="hidden" name="option" value="house">
+                <h3>House</h3>
+                <p class="mb-4">(earns 2-5 golds)</p>
+                <button type="submit">Find Gold!</button>
+            </form>
+
+            <form action="/process_money" method="POST" class="col p-4 mx-4 border border-dark d-flex flex-column text-center">
+                {% csrf_token %}
+                <input type="hidden" name="option" value="casino">
+                <h3>Casino</h3>
+                <p class="mb-4">(earns/takes 0-50 golds)</p>
+                <button type="submit">Find Gold!</button>
+            </form>
+        </div>
+
+        <!-- Activities -->
+        <div class="row custom-row">
+            <h5>Activities:</h5>
+            <div class="overflow-auto custom-row border border-dark" id="activities">
+                {% for activity in request.session.activities %}
+                    <p class="{{ activity.type }}">{{ activity.content }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

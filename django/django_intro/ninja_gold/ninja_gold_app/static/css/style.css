@@ -1,0 +1,11 @@
+.custom-row {
+    height: 33vh;
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red
+}
