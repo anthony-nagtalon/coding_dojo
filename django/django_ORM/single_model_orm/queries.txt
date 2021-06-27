@@ -1,0 +1,42 @@
+>>> from users_app.models import *
+
+-- Create 3 new users --
+>>> new_user1 = User.objects.create(first_name="Adrian", last_name="Andrews", email_address="a.andrews@ltailor.com", age=24)
+>>> new_user2 = User.objects.create(first_name="Maya", last_name="Fey", email_address="stepladderfan@mediums.com", age=18)
+>>> new_user3 = User.objects.create(first_name="Maya", last_name="Fey", email_address="stepladderfan@mediums.com", age=18)
+
+-- Retrieve all the users --
+>>> print(User.objects.all())
+<QuerySet [<User: User object (1)>, <User: User object (2)>, <User: User object (3)>]>
+
+-- Retrieve the last user --
+>>> last_user = User.objects.last()
+>>> print(last_user)
+User object (3)
+
+-- Retrieve the first user --
+>>> first_user = User.objects.first()
+>>> print(first_user)
+User object (1)
+
+-- Change the user with id=3 so their last name is Pancakes --
+>>> third_user = User.objects.get(id=3)
+>>> third_user.last_name = "Pancakes"
+>>> third_user.save()
+>>> print(User.objects.get(id=3).last_name)
+Pancakes
+
+-- Delete the user with id=2 --
+>>> user_to_delete = User.objects.get(id=2)
+>>> user_to_delete.delete()
+(1, {'users_app.User': 1})
+>>> print(User.objects.all())
+<QuerySet [<User: User object (1)>, <User: User object (3)>]>
+
+-- Get all the users, sorted by first_name --
+>>> print(User.objects.all().order_by("first_name"))
+<QuerySet [<User: User object (1)>, <User: User object (3)>]>
+
+-- Get all the users, sorted by first_name in descending order --
+>>> print(User.objects.all().order_by("-first_name"))
+<QuerySet [<User: User object (3)>, <User: User object (1)>]>
