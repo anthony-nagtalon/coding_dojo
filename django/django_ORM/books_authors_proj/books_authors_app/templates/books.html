@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Books & Authors</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <form action="/add_book" method="POST" class="col">
+                {% csrf_token %}
+                <h1>Add a Book</h1>
+                
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title">
+                
+                <label for="desc">Description</label>
+                <input type="text" id="desc" name="desc">
+    
+                <button type="submit">Add</button>
+            </form>
+            <table class="col">
+                <thead>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    <!-- Iterate through all Books -->
+                    {% for book in books.all %}
+                        <tr>
+                            <td>{{ book.id }}</td>
+                            <td>{{ book.title }}</td>
+                            <td>
+                                <a href="/books/{{ book.id }}">View</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
