@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Read (All)</title>
 </head>
-<body>
-    <h1>All Shows</h1>
-    <table>
+<body class="container my-4">
+    <h1 class="jumbotron-heading">All Shows</h1>
+    <table class="table my-4 border-top">
         <thead>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Network</th>
-            <th>Release Date</th>
-            <th>Actions</th>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Network</th>
+            <th scope="col">Release Date</th>
+            <th scope="col">Actions</th>
         </thead>
         <tbody>
             {% for show in shows.all %}
