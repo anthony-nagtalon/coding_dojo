@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Favorite Books</title>
+</head>
+<body class="container">
+    <div class="d-flex mb-3 border-bottom border-dark p-2">
+        <h1 class="jumbotron-heading me-auto bd-highlight">Welcome, {{ logged_user.first_name }}!</h1>
+        <a href="/logout" class="bd-highlight">Log Out</a>    
+    </div>
+
+    <div class="row">
+        <div class="col-5">
+            <h2 class="my-2">{{ book.title }}</h2>
+            <p class="my-1">Added by: {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }}</p>
+            <p class="my-1">Added on: {{ book.created_at|date:"M j, Y"}} @ {{ book.created_at|time:"g:i a" }}</p>
+            <p>Last updated on: {{ book.updated_at|date:"M j, Y"}} @ {{ book.updated_at|time:"g:i a" }}</p>
+            <div class="row mb-2">
+                <label for="desc" class="col-3">Description:</label>
+                <div class="col">
+                    <div class="overflow-auto">{{ book.desc|linebreaks }}</div>    
+                </div>
+            </div>
+        </div>
+
+        <div class="col offset-1">
+            <h2>Users Who Like This Book:</h2>
+            <ul class="mb-2">
+            {% if logged_user in book.users_who_like.all %}
+                <li>{{ logged_user.first_name }} {{ logged_user.last_name }} <a href="/books/{{book.id}}/unfavorite">Un-Favorite</a></li>
+            {% endif %}
+            {% for user in book.users_who_like.all %}
+                {% if user.id != request.session.id %}
+                    <li>{{ user.first_name }} {{ user.last_name }}</li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+            {% if logged_user not in book.users_who_like.all %}
+                <a href="/books/{{ book.id }}/favorite">Add to Favorites</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
